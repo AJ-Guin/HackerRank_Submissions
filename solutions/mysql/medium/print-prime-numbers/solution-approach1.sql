@@ -7,6 +7,12 @@
 -- Language    mysql
 -- Status      Accepted
 -- Submitted   2026-09-01, 01:11 p.m.
+-- Technique   recursive-cte-prime-filtering
+-- Time        O(N^2)
+-- Space       O(N)
+-- Insight     The query generates a sequence of integers up to 1000 and filters out composite numbers by checking for divisors using a correlated subquery.
+-- Interview   Before: "How would you find primes up to 1000 in SQL?" After: "I used a recursive CTE to generate the range and a NOT EXISTS clause to filter composites, resulting in O(N^2) time complexity, which is efficient enough for N=1000."
+-- Pitfalls    (1) Failing to use the correct separator character '&' as specified in the problem statement.  (2) Exceeding the default group_concat_max_len limit if the range of numbers were significantly larger than 1000.  (3) Incorrectly including 1 as a prime number by failing to handle the base case of the divisor check.
 -- ──────────────────────────────────────────────────
 
 with recursive temp as (

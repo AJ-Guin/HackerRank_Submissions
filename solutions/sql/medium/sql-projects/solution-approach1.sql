@@ -7,6 +7,12 @@
 -- Language    sql
 -- Status      Accepted
 -- Submitted   2026-09-02, 10:47 a.m.
+-- Technique   window-function-grouping-gaps
+-- Time        O(N log N)
+-- Space       O(N)
+-- Insight     The solution identifies project boundaries by assigning a new group ID whenever the current start date does not match the previous end date.
+-- Interview   Before: "How do I group consecutive date ranges?" After: "I used window functions to detect gaps in the timeline, assigning a unique ID to each contiguous block. This approach runs in O(N log N) time due to sorting, effectively handling the requirement to group tasks by consecutive dates."
+-- Pitfalls    (1) Failing to use the correct window function order, which disrupts the identification of consecutive date sequences.  (2) Misinterpreting the grouping logic by using Start_Date instead of End_Date for the LAG comparison.  (3) Incorrectly ordering the final result set by failing to calculate the project duration using DATEDIFF.
 -- ──────────────────────────────────────────────────
 
 

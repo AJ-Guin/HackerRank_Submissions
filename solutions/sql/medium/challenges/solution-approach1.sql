@@ -7,6 +7,12 @@
 -- Language    sql
 -- Status      Accepted
 -- Submitted   2026-09-02, 10:49 a.m.
+-- Technique   group-by-having-subquery-filtering
+-- Time        O(N log N)
+-- Space       O(N)
+-- Insight     The query filters hackers by retaining those whose challenge count matches the global maximum or is a unique frequency value among all hackers.
+-- Interview   Before: "I would join the tables and filter by count." After: "I used a subquery to identify the maximum count and another to find unique counts, ensuring O(N log N) complexity while correctly excluding non-unique counts less than the maximum as required."
+-- Pitfalls    (1) Failing to exclude hackers with duplicate challenge counts that are less than the maximum.  (2) Incorrectly sorting by name instead of hacker_id when challenge counts are equal.  (3) Omitting the group-by clause on hacker_id and name, which causes aggregation errors.
 -- ──────────────────────────────────────────────────
 
 

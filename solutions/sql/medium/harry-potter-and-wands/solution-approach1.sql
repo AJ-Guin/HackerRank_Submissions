@@ -7,6 +7,12 @@
 -- Language    sql
 -- Status      Accepted
 -- Submitted   2026-09-02, 10:49 a.m.
+-- Technique   common-table-expression-aggregation-join
+-- Time        O(N log N)
+-- Space       O(N)
+-- Insight     The query identifies the minimum cost for each unique combination of age and power using a CTE, then filters the original inventory to match these specific minimums.
+-- Interview   Before: "I would try to filter the wands directly in one pass." After: "That fails because you need the minimum coins per group. I used a CTE to aggregate the minimums first, resulting in O(N log N) time complexity due to the final sort, which handles the power and age requirements correctly."
+-- Pitfalls    (1) Failing to filter is_evil = 0 in both the CTE and the final join leads to incorrect results including dark arts wands.  (2) Grouping by age and power without including coins_needed in the CTE prevents identifying the correct minimum cost for each wand category.  (3) Incorrectly sorting by power and age in ascending order instead of descending order violates the problem's specific output requirements.
 -- ──────────────────────────────────────────────────
 
 

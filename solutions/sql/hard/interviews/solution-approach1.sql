@@ -7,6 +7,12 @@
 -- Language    sql
 -- Status      Accepted
 -- Submitted   2026-09-02, 10:30 a.m.
+-- Technique   multi-table-join-aggregation
+-- Time        O(N log N)
+-- Space       O(N)
+-- Insight     The query aggregates statistics across multiple joined tables and filters out contests where the sum of all four metrics equals zero using a HAVING clause.
+-- Interview   Before: "How do I handle missing stats for challenges?" After: "Use LEFT JOINs combined with ISNULL to treat missing data as zero, then filter the aggregated results in O(N log N) time to exclude contests where all four metrics sum to zero."
+-- Pitfalls    (1) Failing to aggregate stats by challenge_id before joining, which causes duplicate counts due to the one-to-many relationship between challenges and stats.  (2) Omitting the HAVING clause, which violates the requirement to exclude contests where all four sums are zero.  (3) Using INNER JOINs instead of LEFT JOINs for stats tables, which incorrectly excludes challenges that have no recorded views or submissions.
 -- ──────────────────────────────────────────────────
 
 

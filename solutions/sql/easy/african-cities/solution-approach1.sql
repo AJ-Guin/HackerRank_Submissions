@@ -7,6 +7,12 @@
 -- Language    sql
 -- Status      Accepted
 -- Submitted   2026-09-03, 10:34 p.m.
+-- Technique   inner-join-filter
+-- Time        O(N + M)
+-- Space       O(N + M)
+-- Insight     The query performs an inner join between the city and country tables on matching country codes to filter records by the continent attribute.
+-- Interview   Before: "How would you retrieve city names based on a specific continent?" After: "I use an inner join on the shared country code column to link the tables, then apply a where clause to filter by continent, resulting in O(N + M) time complexity."
+-- Pitfalls    (1) Failing to use the correct join condition between CITY.CountryCode and COUNTRY.Code will result in an incorrect Cartesian product.  (2) Omitting the table alias or prefix when selecting the name column can cause ambiguity errors if both tables contain a name column.
 -- ──────────────────────────────────────────────────
 
 

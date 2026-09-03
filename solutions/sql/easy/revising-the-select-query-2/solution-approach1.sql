@@ -7,6 +7,12 @@
 -- Language    sql
 -- Status      Accepted
 -- Submitted   2026-09-03, 10:35 p.m.
+-- Technique   conditional-projection-filtering
+-- Time        O(N)
+-- Space       O(N)
+-- Insight     The query filters the dataset by applying a logical conjunction to the population and country code attributes before projecting the name column.
+-- Interview   Before: "How would you retrieve specific city names based on multiple criteria?" After: "I use a WHERE clause with AND to filter rows by population and country code, resulting in O(N) time complexity where N is the number of rows in the table."
+-- Pitfalls    (1) Failing to use the exact string literal 'USA' for the CountryCode column.  (2) Using an incorrect comparison operator instead of the strictly greater than operator for the population threshold of 120000.
 -- ──────────────────────────────────────────────────
 
 
